@@ -1,12 +1,11 @@
 <?php
-$host    = '127.0.0.1';
-$port    = '3307'; // <-- Este es el puerto que usa tu XAMPP
+$host    = 'localhost';
 $db      = 'clinica_central';
 $usuario = 'root';
-$clave   = '';
+$clave   = '';          
 $charset = 'utf8mb4';
 
-$dsn = "mysql:host=$host;port=$port;dbname=$db;charset=$charset";
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
 $opciones = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
