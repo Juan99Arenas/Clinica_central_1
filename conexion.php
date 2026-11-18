@@ -6,8 +6,7 @@ $usuario = 'root';
 $clave   = '';          // XAMPP trae el usuario root sin contraseña
 $charset = 'utf8mb4';
 
-$dsn = "mysql:host=$host:3306;dbname=$db;charset=$charset";
-
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $opciones = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
