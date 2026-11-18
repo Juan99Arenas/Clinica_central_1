@@ -7,7 +7,8 @@ if (!$id) {
     exit;
 }
 
-$stmt = $pdo->prepare('SELECT * FROM usuarios WHERE id = :id');
+// CORREGIDO: Se cambió 'usuarios' por 'Pacientes'
+$stmt = $pdo->prepare('SELECT * FROM Pacientes WHERE id = :id');
 $stmt->execute([':id' => $id]);
 $Paciente = $stmt->fetch();
 
@@ -38,7 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errores)) {
         try {
-            $sql = 'UPDATE usuarios
+            // CORREGIDO: Se cambió 'usuarios' por 'Pacientes'
+            $sql = 'UPDATE Pacientes
                     SET nombre = :nombre, apellido = :apellido, correo = :correo, telefono = :telefono
                     WHERE id = :id';
             $stmt = $pdo->prepare($sql);
@@ -53,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } catch (PDOException $e) {
             if ($e->getCode() === '23000') {
-                $errores[] = 'Ya existe otro usuario con ese correo.';
+                $errores[] = 'Ya existe otro paciente con ese correo.';
             } else {
                 $errores[] = 'Error al actualizar: ' . $e->getMessage();
             }
@@ -64,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 require __DIR__ . '/includes/header.php';
 ?>
 
-<h2>Editar usuario #<?= $id ?></h2>
+<h2>Editar paciente #<?= $id ?></h2>
 
 <?php if ($errores): ?>
     <div class="errores"><ul>

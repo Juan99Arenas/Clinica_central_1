@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Pacientes (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO Pacientes (nombre, apellido, correo, telefono) VALUES
-('Duabn', 'Gómez', 'Duban.gomez@example.com', '3001234567'),
+('Duban', 'Gómez', 'Duban.gomez@example.com', '3001234567'),
 ('Pablo', 'Martínez', 'Pablo.martinez@example.com', '3109876543'),
 ('Juan', 'Arenas', 'Juan.arenas@example.com', '3109876543'),
 ('Samuel', 'Molina', 'Samuel.molina@example.com', '3109876543'),

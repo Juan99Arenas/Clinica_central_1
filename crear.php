@@ -18,7 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errores)) {
         try {
-            $sql = 'INSERT INTO usuarios (nombre, apellido, correo, telefono) VALUES (:nombre, :apellido, :correo, :telefono)';
+            // CORREGIDO: Se cambió 'usuarios' por 'Pacientes'
+            $sql = 'INSERT INTO Pacientes (nombre, apellido, correo, telefono) VALUES (:nombre, :apellido, :correo, :telefono)';
             $stmt = $pdo->prepare($sql);
             $stmt->execute([
                 ':nombre'   => $datos['nombre'],
@@ -30,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         } catch (PDOException $e) {
             if ($e->getCode() === '23000') {
-                $errores[] = 'Ya existe un usuario con ese correo.';
+                $errores[] = 'Ya existe un paciente con ese correo.';
             } else {
                 $errores[] = 'Error al guardar: ' . $e->getMessage();
             }
@@ -41,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 require __DIR__ . '/includes/header.php';
 ?>
 
-<h2>Nuevo paciente </h2>
+<h2>Nuevo paciente</h2>
 
 <?php if ($errores): ?>
     <div class="errores"><ul>
