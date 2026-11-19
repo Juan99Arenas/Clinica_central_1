@@ -7,7 +7,6 @@ if (!$id) {
     exit;
 }
 
-// CORREGIDO: Se cambió 'usuarios' por 'Pacientes'
 $stmt = $pdo->prepare('SELECT * FROM Pacientes WHERE id = :id');
 $stmt->execute([':id' => $id]);
 $Paciente = $stmt->fetch();
@@ -39,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errores)) {
         try {
-            // CORREGIDO: Se cambió 'usuarios' por 'Pacientes'
             $sql = 'UPDATE Pacientes
                     SET nombre = :nombre, apellido = :apellido, correo = :correo, telefono = :telefono
                     WHERE id = :id';
@@ -74,7 +72,8 @@ require __DIR__ . '/includes/header.php';
     </ul></div>
 <?php endif; ?>
 
-<form class="formulario" method="post" action="editar.php">
+<!-- CORREGIDO: Se añadió ?id=<?= $id ?> para no perder el identificador al enviar el formulario -->
+<form class="formulario" method="post" action="editar.php?id=<?= $id ?>">
     <input type="hidden" name="id" value="<?= $id ?>">
     <div class="campo">
         <label for="nombre">Nombre</label>
