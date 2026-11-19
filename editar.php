@@ -7,6 +7,7 @@ if (!$id) {
     exit;
 }
 
+// Consulta apuntando correctamente a la tabla Pacientes
 $stmt = $pdo->prepare('SELECT * FROM Pacientes WHERE id = :id');
 $stmt->execute([':id' => $id]);
 $Paciente = $stmt->fetch();
@@ -38,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errores)) {
         try {
+            // Actualización apuntando correctamente a la tabla Pacientes
             $sql = 'UPDATE Pacientes
                     SET nombre = :nombre, apellido = :apellido, correo = :correo, telefono = :telefono
                     WHERE id = :id';
@@ -72,7 +74,7 @@ require __DIR__ . '/includes/header.php';
     </ul></div>
 <?php endif; ?>
 
-<!-- CORREGIDO: Se añadió ?id=<?= $id ?> para no perder el identificador al enviar el formulario -->
+<!-- El action incluye ?id=<?= $id ?> para no perder el identificador -->
 <form class="formulario" method="post" action="editar.php?id=<?= $id ?>">
     <input type="hidden" name="id" value="<?= $id ?>">
     <div class="campo">
