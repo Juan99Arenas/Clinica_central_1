@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Central - Gestión de Pacientes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="contenedor">
+        <header>
+            <h1>Clínica Central</h1>
+        </header>
+
+        <main>
+            <div class="barra">
+                <h2>Listado de pacientes</h2>
+                <a class="btn" href="crear.php">Nuevo paciente</a>[cite: 1, 5]
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Registro</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Duban Gómez</td>[cite: 2]
+                        <td>Duban.gomez@example.com</td>[cite: 2]
+                        <td>3001234567</td>[cite: 2]
+                        <td>2026-11-24 10:00:00</td>
+                        <td class="acciones">
+                            <a class="btn btn-claro btn-sm" href="editar.php?id=1">Editar</a>[cite: 3, 5]
+                            <form method="post" action="eliminar.php">[cite: 4, 5]
+                                <input type="hidden" name="id" value="1">[cite: 5]
+                                <button type="submit" class="btn btn-sm">Eliminar</button>[cite: 5]
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+
+        <footer class="pie-pagina">
+            <p>&copy; 2026 Clínica Central - Sistema de Gestión</p>
+        </footer>
+    </div>
+</body>
+</html>
