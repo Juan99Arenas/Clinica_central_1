@@ -3,54 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica Central - Gestión de Pacientes</title>
+    <title>Clínica Central — Panel de Pacientes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="contenedor">
-        <header>
-            <h1>Clínica Central</h1>
-        </header>
 
-        <main>
-            <div class="barra">
-                <h2>Listado de pacientes</h2>
-                <a class="btn" href="crear.php">Nuevo paciente</a>[cite: 1, 5]
+    <!-- Barra de navegación superior -->
+    <nav class="navbar">
+        <div class="navbar-contenido">
+            <a href="index.php" class="marca">
+                <span class="marca-icono">+</span>
+                <div>
+                    <span class="marca-titulo">Clínica Central</span>
+                    <span class="marca-sub">Gestión Médica</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.php" class="activo">Pacientes</a>
+                <a href="#">Citas</a>
+                <a href="#">Médicos</a>
+                <a href="#">Especialidades</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="contenedor">
+        <!-- Encabezado y botón principal -->
+        <div class="barra">
+            <div>
+                <h2>Directorio de Pacientes</h2>
+                <p class="subtitulo">Administra los registros clínicos, datos de contacto y seguimiento.</p>
+            </div>
+            <a class="btn" href="crear.php">
+                <span>+</span> Nuevo paciente
+            </a>
+        </div>
+
+        <!-- Tarjetas de resumen (KPIs) -->
+        <div class="grid-stats">
+            <div class="stat-card">
+                <span class="stat-label">Total Pacientes</span>
+                <span class="stat-valor">6</span>
+                <span class="stat-badge positivo">Activos en sistema</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Citas Programadas</span>
+                <span class="stat-valor">4</span>
+                <span class="stat-badge info">Noviembre 2026</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Especialidades</span>
+                <span class="stat-valor">4</span>
+                <span class="stat-badge neutro">Medicina, Pediatría, Cardio, Derma</span>
+            </div>
+        </div>
+
+        <!-- Contenedor principal de la tabla -->
+        <div class="card-tabla">
+            <div class="tabla-header">
+                <div class="buscador">
+                    <input type="text" id="buscarPaciente" placeholder="Buscar por nombre, correo o teléfono..." onkeyup="filtrarTabla()">
+                </div>
+                <span class="contador-registros">Mostrando <strong>6</strong> registros</span>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>
-                        <th>Teléfono</th>
-                        <th>Registro</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Duban Gómez</td>[cite: 2]
-                        <td>Duban.gomez@example.com</td>[cite: 2]
-                        <td>3001234567</td>[cite: 2]
-                        <td>2026-11-24 10:00:00</td>
-                        <td class="acciones">
-                            <a class="btn btn-claro btn-sm" href="editar.php?id=1">Editar</a>[cite: 3, 5]
-                            <form method="post" action="eliminar.php">[cite: 4, 5]
-                                <input type="hidden" name="id" value="1">[cite: 5]
-                                <button type="submit" class="btn btn-sm">Eliminar</button>[cite: 5]
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </main>
-
-        <footer class="pie-pagina">
-            <p>&copy; 2026 Clínica Central - Sistema de Gestión</p>
-        </footer>
-    </div>
-</body>
-</html>
+            <div class="tabla-responsive">
+                <table id="tablaPacientes">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Paciente</th>
+                            <th>Correo electrónico</th>
+                            <th>Teléfono</th>
+                            <th>Fecha de registro</th>
+                            <th class="texto-derecha">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="badge-id">#001</span></td>
+                            <td>
+                                <div class="paciente-info">
+                                    <div class="avatar">DG</div>
+                                    <div>
+                                        <div class="paciente-nombre">Duban Gómez</div>
+                                        <div class="paciente-estado">Paciente activo</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="texto-suave">Duban.gomez@example.com</td>
+                            <td><span class="badge-tel">300 123 4567</span></td>
+                            <td class="texto-suave">24 Nov 2026</td>
+                            <td class="acciones">
+                                <a class="btn btn-claro btn-sm" href="editar.php?id=1">Editar</a>
+                                <form method="post" action="eliminar.php" onsubmit="return confirm('¿Eliminar este paciente?');">
+                                    <input type="hidden" name="id" value="1">
+                                    <button type="submit" class="btn btn-peligro btn-sm">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge-id">#002</span></td>
+                            <td>
+                                <div class="paciente-info">
+                                    <div class="avatar avatar-teal">PM</div>
+                                    <div>
+                                        <div class="paciente-nombre">Pablo Martínez</div>
+                                        <div class="paciente-estado">Paciente activo</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="texto-suave">Pablo.martinez@example.com</td>
+                            <td><span class="badge-tel">310 987 6543</span></td>
+                            <td class="texto-suave">24 Nov 2026</td>
+                            <td class="acciones">
+                                <a class="btn btn-claro btn-sm" href="editar.php?id=2">Editar</a>
+                                <form method="post" action="eliminar.php" onsubmit="return confirm('¿Eliminar este paciente?');">
+                                    <input type="hidden" name="id" value="2">
+                                    <button type="submit" class="btn btn-peligro btn-sm">Eliminar</button>
